@@ -4,4 +4,4 @@ from django.db import models
 class Product(models.Model):
     name = models.CharField(max_length=200)
     active = models.BooleanField(name='active')
-    price = models.PositiveIntegerField(name='Price')
+    price = models.PositiveIntegerField(default=0)
