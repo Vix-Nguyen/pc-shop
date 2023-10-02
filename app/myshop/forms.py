@@ -4,13 +4,17 @@ from .models import Product, ProductImage
 
 
 class ProductForm(forms.ModelForm):
+    thumbnail = forms.ImageField(label="Thumbnail")
+
     class Meta:
         model = Product
         fields = [
             "name",
             "active",
             "price",
+            "thumbnail",
         ]
+
 
 class ImageForm(forms.ModelForm):
     image = forms.ImageField(

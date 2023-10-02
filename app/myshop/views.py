@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
@@ -19,9 +20,10 @@ def product(request, product_id):
     images = ProductImage.objects.all().filter(product=product_id)
     return render(request, "myshop/product.html", {"product": product, "images": images})
 
+@login_required
 def create_product(request):
     if request.method == "POST":
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, request.FILES)
         files = request.FILES.getlist("image")
         if form.is_valid():
             f = form.save(commit=False)

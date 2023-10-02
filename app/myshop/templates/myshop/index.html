@@ -49,7 +49,7 @@
           <div class="box">
             <a href="{% url 'myshop:product' product.id %}">
               <div class="img-box">
-                <img src="{% static 'myshop/images/p1.png' %}" alt="" />
+                <img src="{{product.thumbnail.url}}" alt="" />
               </div>
               <div class="detail-box">
                 <h6>{{ product.name }}</h6>
