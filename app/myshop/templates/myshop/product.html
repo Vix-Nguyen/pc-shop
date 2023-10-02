@@ -1,1 +1,6 @@
-{{ product.name }} {{ product.price }}
+{{ product.name }} {{ product.price }} 
+{% for pimage in images %}
+    <div class="img-container">
+        <img src="{{pimage.image.url}}" alt="">
+    </div>
+{% endfor %}
