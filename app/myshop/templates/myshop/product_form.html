@@ -1,19 +1,37 @@
-<div class="px-4 py-5 my-5 text-center">
-  <h1 class="display-5 fw-bold">Add New Product</h1>
-  <div class="col-lg-6 mx-auto">
-    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-      <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %} 
-        {% for field in form %} 
-            {{ field }} <br /><br />
+<head>
+  <title>Add new product form</title>
+  {% load static %}
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+    crossorigin="anonymous"
+  />
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="{% static 'myshop/css/product_form_style.css' %}" />
+</head>
+<body>
+  <div class="main-block">
+    <div class="btn-group">
+      <a class="btn-item" href="/">Home page</a>
+    </div>
+    <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="title">
+        <i class="fas fa-pencil-alt"></i>
+        <h2>New</h2>
+      </div>
+      <div class="info">
+        {% for field in form %} {{ field.label }} {{ field }} <br /><br />
         {% endfor %} 
         {{ imageform.management_form }} 
-        {% for form in imageform %}
-            {{ form }} 
-        {% endfor %}
-        <br /><br />
-        <input type="submit" name="submit" value="Submit" />
-      </form>
-    </div>
+        {% for form in imageform %} {{ form }} {% endfor %}
+      </div>
+
+      <button type="submit" name="submit" value="Submit">Submit</button>
+    </form>
   </div>
-</div>
+</body>
