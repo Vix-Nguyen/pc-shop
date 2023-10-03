@@ -1,6 +1,81 @@
-{{ product.name }} {{ product.price }} 
-{% for pimage in images %}
-    <div class="img-container">
-        <img src="{{pimage.image.url}}" alt="">
+<!doctype html>
+<html>
+<head>
+<title>UI Design</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta charset=-"utf-8">
+    {% load static %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+  <link rel="stylesheet" href="{% static 'myshop/css/product_style.css' %}" />
+</head>
+<body> 
+<div class="outer">
+  <div class="center-wrapper">
+    <div class="container-fluid content">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 shoe-slider">
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                {% for image in images %}
+                 <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter0 }}"><img decoding="async" src="{{image.image.url}}" class="d-block w-100" alt="..."></li>
+                {% endfor %}
+            </ol>
+            <div class="carousel-inner">
+                {% for image in images %}
+                {% if forloop.counter0 == 0 %}
+                <div class="carousel-item active">
+                {% else %}
+                <div class="carousel-item ">
+                {% endif %}
+                    <img decoding="async" src="{{image.image.url}}" class="d-block w-100" height="500" alt="...">
+                </div>
+              {% endfor %}
+            </div> 
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 shoe-content">
+          <div class="text1">
+            <span>{{ product.name }}</span>
+            {% comment %} <span>SEA BLUE & WHITE</span> {% endcomment %}
+          </div>
+          <div class="text2">
+            {{ product.price }}
+          </div>
+          <div class="text3">
+            Text 3
+          </div> 
+          <div class="text4">
+            DESCRIPTION
+          </div> 
+          <div class="text5">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
+          </div> 
+          <div class="btn-wrapper">
+            <span class="btn">BUY</span> 
+            <span class="qantity">
+              <div>
+                <i class="fas fa-minus"></i>
+                <span class="one">1</span>
+                <i class="fas fa-plus"></i>
+              </div>
+              <div class="quantity-text">QUANTITY</div>
+            </span> 
+            <div class="social-icons">
+              <i class="fab fa-twitter"></i>
+              <i class="fab fa-pinterest-p"></i>
+              <i class="fab fa-facebook-f"></i>
+            </div> 
+          </div> 
+        </div>
+      </div>
     </div>
-{% endfor %}
+  </div> 
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
