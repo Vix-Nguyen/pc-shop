@@ -1,5 +1,5 @@
 
 *.pyc
-app/db.sqlite3
-*.pyc
+app/media
+*.sqlite3
 *.png

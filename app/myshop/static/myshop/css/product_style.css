@@ -16,7 +16,7 @@
 .center-wrapper{
 	position: absolute;
 	width:75%;
-	height: 80vh;
+	height: max-content;
 	min-height:550px;
 	background: #fff;
 	top:50%;
@@ -46,14 +46,13 @@
 	border-left:1px solid #333333;
 	padding-left: 10px;
 }
-.text1 span{
+.text1 h2{
 	display: block;
 }
-.text1 span:nth-child(1){
+.text1 h2:nth-child(1){
 	color:#03849D;
-	font-size:13px;
 }
-.text1 span:nth-child(2){
+.text1 h2:nth-child(2){
 	color:#6b6b6b;
 	font-size: 13px;
 }
