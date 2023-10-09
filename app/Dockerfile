@@ -4,11 +4,7 @@ FROM --platform=$BUILDPLATFORM python:3.8-bullseye AS builder
 EXPOSE 8000
 WORKDIR /app 
 COPY requirements.txt /app
-RUN apk update \
-    && apk add gcc \
-    && apk add musl-dev \
-    && apk add jpeg-dev zlib-dev libjpeg \
-    && pip3 install -r requirements.txt --no-cache-dir
+RUN pip3 install -r requirements.txt --no-cache-dir
 COPY . /app 
 ENTRYPOINT ["python3"] 
 CMD ["manage.py", "runserver", "0.0.0.0:8000"]
