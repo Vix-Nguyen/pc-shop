@@ -1,5 +1,7 @@
-
-*.pyc
-app/db.sqlite3
-*.pyc
+__pycache__/
+*.py3
+app/media
+*.sqlite3
 *.png
+*.jpeg
+
