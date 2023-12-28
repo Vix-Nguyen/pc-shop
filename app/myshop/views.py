@@ -21,6 +21,15 @@ def product(request, product_id):
     return render(request, "myshop/product.html", {"product": product, "images": images})
 
 @login_required
+def manage_product(request):
+    product_list = Product.objects.all()
+    template = loader.get_template("myshop/product_manage.html")
+    context = {
+        "product_list": product_list
+    }
+    return HttpResponse(template.render(context, request))
+
+@login_required
 def create_product(request):
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES)

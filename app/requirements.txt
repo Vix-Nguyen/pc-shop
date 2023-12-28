@@ -3,3 +3,4 @@ environs==7.3.1
 mypy-extensions==0.4.3
 pathspec==0.9.0
 Pillow==9.1.0
+django-money==3.3.0
