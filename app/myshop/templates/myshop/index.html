@@ -58,13 +58,16 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#contact_section">Contact Us</a>
+            <a class="nav-link" href="#footer_section">Contact Us</a>
           </li>
         </ul>
         <div class="user_option">
         {% if user.is_staff %}
           <div class="col">
-              <a href="{% url 'myshop:create_product' %}" class="btn btn-outline-success"> Add new product </a>
+              <a href="{% url 'myshop:create_product' %}" class="btn btn-outline-success"> Add Product </a>
+          </div>
+          <div class="col">
+            <a href="{% url 'myshop:manage_product' %}" class="btn btn-outline-success"> Manage Product </a>
           </div>
         {% else %}
           <a href="/admin">
@@ -124,57 +127,6 @@
   </section>
 
   <!-- end shop section -->
-
-  <!-- contact section -->
-
-  <section id="contact_section" class="contact_section">
-    <div class="container px-0">
-      <div class="heading_container">
-        <h2 class="">Contact Us</h2>
-      </div>
-    </div>
-    <div class="container container-bg">
-      <div class="row">
-        <div class="col-lg-7 col-md-6 px-0">
-          <div class="map_container">
-            <div class="map-responsive">
-              <iframe
-              {% comment %} TODO: Put google map url here {% endcomment %}
-                src=""
-                width="600"
-                height="450"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-5 px-0">
-          <form action="#">
-            <div>
-              <input type="text" placeholder="Name" />
-            </div>
-            <div>
-              <input type="email" placeholder="Email" />
-            </div>
-            <div>
-              <input type="text" placeholder="Phone" />
-            </div>
-            <div>
-              <input type="text" class="message-box" placeholder="Message" />
-            </div>
-            <div class="d-flex">
-              <button>SEND</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end contact section -->
   <!-- info section -->
 
   <section class="info_section layout_padding2-top">

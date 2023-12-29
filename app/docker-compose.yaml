@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   web: 
     image: pc-shop-web:latest
@@ -6,3 +8,21 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
+    networks:
+      - internal
+  postgres:
+    image: postgres:14
+    volumes: 
+      - postgres_data:/var/lib/postgresql/data
+    environment: 
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=mydb
+    networks:
+      - internal
+
+networks:
+  internal:
+
+volumes:
+  postgres_data:
