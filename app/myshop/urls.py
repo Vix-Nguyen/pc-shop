@@ -6,8 +6,9 @@ from . import views
 
 app_name = "myshop"
 urlpatterns = [
-    path("", views.index, name="index"),
-    path("product/<int:product_id>/", views.product, name="product"),
-    path("product/new", views.create_product, name='create_product'),
-    path("product/list", views.manage_product, name='manage_product'),
+    path("", views.HomePage.as_view(), name="index"),
+    path("product/<int:pk>/", views.ProductDetailView.as_view(),
+         name="product-detail"),
+    path("product/new", views.ProductCreateView.as_view(), name='create_product'),
+    path("product/list", views.ProductListView.as_view(), name='manage_product'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

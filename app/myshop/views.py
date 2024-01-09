@@ -1,52 +1,75 @@
+from typing import Any
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
-from django.template import loader
-from django.shortcuts import get_object_or_404, render
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import redirect, render
+from django.urls import reverse
+from django.views.generic import View, ListView, CreateView, DetailView
 
 from .forms import ImageForm, ProductForm
 from .models import Product, ProductImage
 
-def index(request):
+
+class HomePage(View):
     product_list = Product.objects.all()
-    template = loader.get_template("myshop/index.html")
-    context = {
-        "product_list": product_list
-    }
-    return HttpResponse(template.render(context, request))
+    template_name = "myshop/index.html"
 
-def product(request, product_id):
-    product = get_object_or_404(Product, pk=product_id)
-    images = ProductImage.objects.all().filter(product=product_id)
-    return render(request, "myshop/product.html", {"product": product, "images": images})
+    def get(self, request):
+        context = {
+            "product_list": self.product_list
+        }
+        return render(request, self.template_name, context)
 
-@login_required
-def manage_product(request):
-    product_list = Product.objects.all()
-    template = loader.get_template("myshop/product_manage.html")
-    context = {
-        "product_list": product_list
-    }
-    return HttpResponse(template.render(context, request))
 
-@login_required
-def create_product(request):
-    if request.method == "POST":
+class ProductDetailView(DetailView):
+    model = Product
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        product_id = self.get_object()
+        context["images"] = ProductImage.objects.filter(product=product_id)
+        return context
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    fields = [
+        "name",
+        "active",
+        "is_sold",
+        "price",
+        "thumbnail",
+        "description",
+    ]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["imageform"] = ImageForm()
+        return context
+
+    def post(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
         form = ProductForm(request.POST, request.FILES)
         files = request.FILES.getlist("image")
+
         if form.is_valid():
-            f = form.save(commit=False)
-            f.user = request.user
-            f.save()
-            for i in files:
-                ProductImage.objects.create(product=f, image=i)
-            messages.success(request, "New Product Added")
+            product_instance = form.save(commit=False)
+            product_instance.user = request.user
+            product_instance.save()
 
-            return HttpResponseRedirect("/")
+            for image_file in files:
+                ProductImage.objects.create(
+                    product=product_instance, image=image_file)
+
+            messages.success(request, 'New Product Added')
+
+            return redirect(
+                reverse(
+                    'myshop:product-detail',
+                    kwargs={'pk': product_instance.pk}
+                ))
         else:
-            print(form.errors)
-    else:
-        form = ProductForm()
-        imageform = ImageForm()
+            return HttpResponse(form.errors)
 
-    return render(request, "myshop/product_form.html", {"form": form, "imageform": imageform})
+
+class ProductListView(ListView):
+    model = Product
+    template_name = 'myshop/product_manage.html'

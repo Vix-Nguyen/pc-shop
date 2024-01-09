@@ -88,7 +88,7 @@
           {% for product in product_list %}
           <div class="col-sm-6 col-md-4 col-lg-3">
             <div class="box">
-              <a href="{% url 'myshop:product' product.id %}">
+              <a href="{% url 'myshop:product-detail' product.id %}">
                 <div class="img-box">
                   <img src="{{product.thumbnail.url}}" alt="" />
                 </div>
