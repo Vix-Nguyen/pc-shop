@@ -1,5 +1,7 @@
-<head>
-  <title>Add new product form</title>
+{% block title %}
+  <title>New</title>
+{% endblock title %}
+{% block custom_style %}
   {% load static %}
   <link
     rel="stylesheet"
@@ -12,14 +14,14 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" href="{% static 'myshop/css/product_form_style.css' %}" />
-</head>
-<body>
+{% endblock custom_style %}
+{% block content %}
   <div>
-    <div class="btn-group">
-      <a class="btn-item" href="/">Home page</a>
-    </div>
     <form action="" method="post" enctype="multipart/form-data">
       {% csrf_token %}
+      <div class="btn-group" style="float: inline-end; position: relative; margin-left: -60px;">
+        <a class="btn-item" href="/">Cancel</a>
+      </div>
       <div class="title">
         <i class="fas fa-pencil-alt"></i>
         <h2>New</h2>
@@ -34,4 +36,4 @@
       <button type="submit" name="submit" value="Submit">Submit</button>
     </form>
   </div>
-</body>
+{% endblock content %}

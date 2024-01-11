@@ -1,16 +1,13 @@
-<!doctype html>
-<html>
-<head>
-<title>UI Design</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "myshop/base.html" %}
 
-<meta charset=-"utf-8">
-    {% load static %}
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+{% block custom_style %}
+  {% load static %}
   <link rel="stylesheet" href="{% static 'myshop/css/product_style.css' %}" />
-</head>
-<body> 
+{% endblock custom_style %}
+{% block title %}
+  <title>Product {{product.name}}</title>
+{% endblock title %}
+{% block content %}
 <div class="outer">
   <div class="btn-group">
     <a class="btn btn-outline-info" style="margin-left: 20px; margin-top: 20px;" href="/">Back</a>
@@ -76,9 +73,7 @@
     </div>
   </div> 
 </div>
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</body>
-</html>
+{% endblock content %}
