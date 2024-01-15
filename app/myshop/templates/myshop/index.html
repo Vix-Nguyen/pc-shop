@@ -32,10 +32,7 @@
           <div class="user_option">
           {% if user.is_staff %}
               <div class="col">
-                  <a href="{% url 'myshop:create_product' %}" class="btn btn-outline-success"> Add Product </a>
-              </div>
-              <div class="col">
-              <a href="{% url 'myshop:manage_product' %}" class="btn btn-outline-success"> Manage Product </a>
+                  <a href="{% url 'create_product' %}" class="btn btn-outline-success"> Add Product </a>
               </div>
           {% else %}
               <a href="/admin">
@@ -68,7 +65,7 @@
         {% for product in product_list %}
         <div class="col-sm-6 col-md-4 col-lg-3">
           <div class="box">
-            <a href="{% url 'myshop:product-detail' product.id %}">
+            <a href="{% url 'product-detail' product.id %}">
               <div class="img-box">
                 <img src="{{product.thumbnail.url}}" alt="" />
               </div>

@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.views.generic import View, ListView, CreateView, DetailView
+from django.views.generic import View, ListView, CreateView, DetailView, UpdateView
 
 from .forms import ImageForm, ProductForm
 from .models import Product, ProductImage
@@ -32,14 +32,8 @@ class ProductDetailView(DetailView):
 
 class ProductCreateView(CreateView):
     model = Product
-    fields = [
-        "name",
-        "active",
-        "is_sold",
-        "price",
-        "thumbnail",
-        "description",
-    ]
+    fields = '__all__'
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -63,12 +57,21 @@ class ProductCreateView(CreateView):
 
             return redirect(
                 reverse(
-                    'myshop:product-detail',
+                    'product-detail',
                     kwargs={'pk': product_instance.pk}
                 ))
         else:
             return HttpResponse(form.errors)
 
+
+class ProductEditView(UpdateView):
+    model = Product
+    fields = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["imageform"] = ImageForm()
+        return context
 
 class ProductListView(ListView):
     model = Product

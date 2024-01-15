@@ -35,33 +35,6 @@
     .slider_section .img-box {
         padding: 0;
     }
-
-    .saving_section .row {
-        flex-direction: column-reverse;
-    }
-
-    .saving_section .detail-box {
-
-        margin-bottom: 30px;
-    }
-
-    .client_section .box {
-        margin: 15px 25px;
-    }
-
-    .client_section .carousel_btn-box {
-        display: flex;
-        justify-content: center;
-        margin-top: 45px;
-    }
-
-    .client_section .carousel-control-prev,
-    .client_section .carousel-control-next {
-        position: unset;
-        margin: 0 2.5px;
-        width: 45px;
-        height: 45px;
-    }
 }
 
 @media (max-width: 768px) {
@@ -70,21 +43,6 @@
     }
 
     .slider_section .img-box {
-        margin-bottom: 45px;
-    }
-
-    .saving_section,
-    .gift_section {
-        padding-left: 25px;
-        padding-right: 25px;
-    }
-
-    .gift_section .box {
-        padding: 45px 0;
-    }
-
-    .gift_section .img-box {
-        padding: 0 15px;
         margin-bottom: 45px;
     }
 

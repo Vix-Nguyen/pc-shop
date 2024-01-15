@@ -329,6 +329,7 @@ a:focus {
   position: relative;
   padding: 10px;
   margin-top: 25px;
+  border-radius: 25px;
 }
 
 .shop_section .box a {
@@ -418,81 +419,6 @@ a:focus {
   padding-right: 45px;
 }
 
-.saving_section .box {
-  padding-top: 45px;
-  background-color: #7fd7eb;
-  color: #ffffff;
-  border-radius: 15px;
-}
-
-.saving_section .row {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.saving_section .img-box {
-  padding: 15px 0 0 25px;
-}
-
-.saving_section .img-box img {
-  width: 100%;
-}
-
-.saving_section .detail-box {
-  padding: 0 25px;
-}
-
-.saving_section .detail-box p {
-  margin-top: 5px;
-}
-
-.saving_section .detail-box .btn-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin: 35px -5px 0;
-}
-
-.saving_section .detail-box .btn-box a {
-  width: 165px;
-  text-align: center;
-  margin: 5px;
-}
-
-.saving_section .detail-box .btn-box .btn1 {
-  display: inline-block;
-  padding: 10px 0;
-  background-color: #109dbd;
-  color: #ffffff;
-  border: 1px solid #109dbd;
-  border-radius: 0;
-  -webkit-transition: all .3s;
-  transition: all .3s;
-}
-
-.saving_section .detail-box .btn-box .btn1:hover {
-  background-color: transparent;
-  color: #109dbd;
-}
-
-.saving_section .detail-box .btn-box .btn2 {
-  display: inline-block;
-  padding: 10px 0;
-  background-color: #ffffff;
-  color: #000000;
-  border: 1px solid #ffffff;
-  border-radius: 0;
-  -webkit-transition: all .3s;
-  transition: all .3s;
-}
-
-.saving_section .detail-box .btn-box .btn2:hover {
-  background-color: transparent;
-  color: #ffffff;
-}
 
 .why_section .box {
   text-align: center;

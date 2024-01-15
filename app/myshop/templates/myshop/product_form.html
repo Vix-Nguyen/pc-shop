@@ -1,39 +1,60 @@
-{% block title %}
-  <title>New</title>
-{% endblock title %}
+{% extends "myshop/base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
 {% block custom_style %}
-  {% load static %}
-  <link
-    rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
-    integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-    crossorigin="anonymous"
-  />
-  <link
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
-    rel="stylesheet"
-  />
   <link rel="stylesheet" href="{% static 'myshop/css/product_form_style.css' %}" />
 {% endblock custom_style %}
-{% block content %}
-  <div>
-    <form action="" method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      <div class="btn-group" style="float: inline-end; position: relative; margin-left: -60px;">
-        <a class="btn-item" href="/">Cancel</a>
-      </div>
-      <div class="title">
-        <i class="fas fa-pencil-alt"></i>
-        <h2>New</h2>
-      </div>
-      <div class="info">
-        {% for field in form %} {{ field.label }} {{ field }} <br /><br />
-        {% endfor %} 
-        {{ imageform.management_form }} 
-        {% for form in imageform %} {{ form }} {% endfor %}
-      </div>
 
-      <button type="submit" name="submit" value="Submit">Submit</button>
-    </form>
+{% block title %}
+  {% if product %}
+    <title>Edit Product - {{ product.name }}</title>
+  {% else %}
+    <title>Create New Product</title>
+  {% endif %}
+{% endblock title %}
+
+{% block content %}
+<div class="outer">
+  <div class="btn-group-vertical">
+    {% if product %}
+      <a class="btn btn-outline-info" style="margin-left: 20px; margin-top: 20px;" href="{% url 'product-detail' product.id %}">Back</a>
+    {% else %}
+      <a class="btn btn-outline-info" style="margin-left: 20px; margin-top: 20px;" href="{% url 'index' %}">Back</a>
+    {% endif %}
   </div>
+  <div class="center-wrapper">
+    <div class="container-fluid content">
+      {% if product %}
+        <h3>Edit Product - {{ product.name }}</h3>
+      {% else %}
+        <h3>Create New Product</h3>
+      {% endif %}
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %} 
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {% render_field field class+="form-control" %}
+            {% if field == form.thumbnail %}
+              <br/>
+              Current: <img src="{{ field.value.url }}"> 
+        {% endif %}
+          </div>
+        {% endfor %}
+        <label for="product_images">Product Images: </label>
+        <div>
+        {% for formset in imageform %}
+          {{ formset.management_form }}
+          {% for form in formset %}
+            {{ form }}
+          {% endfor %}
+        {% endfor %}
+        </div>
+        <br/>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </form>
+    </div>
+  </div> 
+</div>
 {% endblock content %}

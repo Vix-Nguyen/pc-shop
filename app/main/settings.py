@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'myshop.apps.MyshopConfig',
     # third party
     'djmoney',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
