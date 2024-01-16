@@ -2,22 +2,22 @@ from typing import Any
 from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
-from django.urls import reverse
-from django.views.generic import View, ListView, CreateView, DetailView, UpdateView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import (
+    ListView,
+    CreateView,
+    DetailView,
+    UpdateView,
+    DeleteView
+)
 
 from .forms import ImageForm, ProductForm
 from .models import Product, ProductImage
 
 
-class HomePage(View):
-    product_list = Product.objects.all()
+class HomePage(ListView):
+    model = Product
     template_name = "myshop/index.html"
-
-    def get(self, request):
-        context = {
-            "product_list": self.product_list
-        }
-        return render(request, self.template_name, context)
 
 
 class ProductDetailView(DetailView):
@@ -57,7 +57,7 @@ class ProductCreateView(CreateView):
 
             return redirect(
                 reverse(
-                    'product-detail',
+                    'product_detail',
                     kwargs={'pk': product_instance.pk}
                 ))
         else:
@@ -73,6 +73,10 @@ class ProductEditView(UpdateView):
         context["imageform"] = ImageForm()
         return context
 
-class ProductListView(ListView):
+
+class ProductDeleteView(DeleteView):
     model = Product
-    template_name = 'myshop/product_manage.html'
+    success_url = reverse_lazy("index")
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
