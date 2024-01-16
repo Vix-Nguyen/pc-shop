@@ -30,11 +30,16 @@
 }
 
 .content {
-    width: 90%;
+    width: 60%;
     border-radius: 4px;
 }
 
-img {
+.thumbnail {
     width: 200px;
+    height: auto;
+}
+
+.small-img {
+    width: 80px;
     height: auto;
 }

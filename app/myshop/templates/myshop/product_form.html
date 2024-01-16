@@ -18,12 +18,12 @@
 <div class="outer">
   <div class="btn-group-vertical">
     {% if product %}
-      <a class="btn btn-outline-info" style="margin-left: 20px; margin-top: 20px;" href="{% url 'product-detail' product.id %}">Back</a>
+      <a class="btn btn-outline-info" style="margin-left: 20px; margin-top: 20px;" href="{% url 'product_detail' product.id %}">Back</a>
     {% else %}
       <a class="btn btn-outline-info" style="margin-left: 20px; margin-top: 20px;" href="{% url 'index' %}">Back</a>
     {% endif %}
   </div>
-  <div class="center-wrapper">
+  {% comment %} TODO: Fix wrapper overflow <div class="center-wrapper"> {% endcomment %}
     <div class="container-fluid content">
       {% if product %}
         <h3>Edit Product - {{ product.name }}</h3>
@@ -36,9 +36,9 @@
           <div class="form-group">
             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
             {% render_field field class+="form-control" %}
-            {% if field == form.thumbnail %}
+            {% if field == form.thumbnail and product %}
               <br/>
-              Current: <img src="{{ field.value.url }}"> 
+              Current: <img src="{{ field.value.url }}" class="thumbnail"> 
         {% endif %}
           </div>
         {% endfor %}
@@ -50,11 +50,22 @@
             {{ form }}
           {% endfor %}
         {% endfor %}
+
+        {% if product %}
+          <div class="row" style="margin: 20px;">
+            {% for image in images %}
+              <div class="col-auto">
+                <img src="{{ image.image.url }}" class="small-img">
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
         </div>
         <br/>
         <button type="submit" class="btn btn-primary">Save Changes</button>
       </form>
     </div>
-  </div> 
+  {% comment %} </div>  {% endcomment %}
 </div>
 {% endblock content %}
