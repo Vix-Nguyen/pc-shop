@@ -36,9 +36,10 @@
           <div class="form-group">
             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
             {% render_field field class+="form-control" %}
-            {% if field == form.thumbnail and product %}
+            {% if field == form.thumbnail %}
               <br/>
-              Current: <img src="{{ field.value.url }}" class="thumbnail"> 
+              Preview: 
+              <img id="thumbnail_preview" src="{{ field.value.url }}" alt="your image" class="thumbnail" />
         {% endif %}
           </div>
         {% endfor %}
@@ -68,4 +69,12 @@
     </div>
   {% comment %} </div>  {% endcomment %}
 </div>
+<script>
+  id_thumbnail.onchange = (evt) => {
+    const [file] = id_thumbnail.files;
+    if (file) {
+      thumbnail_preview.src = URL.createObjectURL(file);
+    }
+  };
+</script>  
 {% endblock content %}
