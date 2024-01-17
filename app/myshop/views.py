@@ -16,9 +16,18 @@ from .models import Product, ProductImage
 
 
 class HomePage(ListView):
-    model = Product
+    queryset = Product.objects.filter(active=True)
     template_name = "myshop/index.html"
 
+
+class ProductInactiveListView(ListView):
+    queryset = Product.objects.filter(active=False)
+    template_name = "myshop/index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["inactive"] = True
+        return context
 
 class ProductDetailView(DetailView):
     model = Product
