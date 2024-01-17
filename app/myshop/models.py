@@ -1,13 +1,21 @@
-from djmoney.models.fields import MoneyField
+from typing import Any
 from django.db import models
 from django.urls import reverse
+
+
+class Price(models.PositiveIntegerField):
+
+    def __str__(self) -> str:
+        value = self
+        print(value)
+        return super().__str__()
 
 
 class Product(models.Model):
     name = models.CharField(max_length=200, verbose_name="Name")
     active = models.BooleanField(verbose_name="Show", default=True)
     is_new = models.BooleanField(verbose_name="Is new?", default=True)
-    price = MoneyField(max_digits=9, decimal_places=0, default_currency='VND')
+    price = Price(verbose_name="Price")
     thumbnail = models.ImageField(
         upload_to='thumbnail/', default='thumbnail/default.png', verbose_name='Thumbnail')
     description = models.TextField(

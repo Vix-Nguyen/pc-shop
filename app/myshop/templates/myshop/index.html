@@ -1,4 +1,5 @@
 {% extends "myshop/base.html" %}
+{% load humanize %}
 
 {% block title %}
   <title>Home</title>
@@ -73,7 +74,7 @@
   <section id="shop_section" class="shop_section layout_padding">
     <div class="container">
       <div class="heading_container heading_center">
-        <h2>Latest Products</h2>
+        <h2>Products</h2>
       </div>
       {% if product_list %}
       <div class="row">
@@ -86,13 +87,11 @@
               </div>
               <div class="detail-box">
                 <h6>{{ product.name }}</h6>
-                <h6>
-                  Price
-                  <span> {{ product.price }} </span>
-                </h6>
               </div>
-              <div class="new">
-                <span> New </span>
+              <div class="price">
+                <h6>
+                  <span> {{ product.price|floatformat:0|intcomma }} </span>
+                </h6>
               </div>
             </a>
           </div>

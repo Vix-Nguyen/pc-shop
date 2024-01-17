@@ -1,4 +1,5 @@
 {% extends "myshop/base.html" %}
+{% load humanize %}
 
 {% block custom_style %}
   {% load static %}
@@ -45,7 +46,7 @@
             {% comment %} <span>SEA BLUE & WHITE</span> {% endcomment %}
           </div>
           <div class="text2">
-            {{ product.price }}
+            {{ product.price|floatformat:0|intcomma }}
           </div>
           <div class="text3">
             Text 3
