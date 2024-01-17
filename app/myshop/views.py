@@ -29,6 +29,7 @@ class ProductInactiveListView(ListView):
         context["inactive"] = True
         return context
 
+
 class ProductDetailView(DetailView):
     model = Product
 
@@ -42,7 +43,6 @@ class ProductDetailView(DetailView):
 class ProductCreateView(CreateView):
     model = Product
     fields = '__all__'
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -79,11 +79,23 @@ class ProductEditView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        product_id = self.get_object()
+        product = self.get_object()
 
         context["imageform"] = ImageForm()
-        context["images"] = ProductImage.objects.filter(product=product_id)
+        context["images"] = ProductImage.objects.filter(product=product)
         return context
+
+    def post(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
+        res = super().post(request, *args, **kwargs)
+        files = request.FILES.getlist("image")
+
+        product = self.get_object()
+        product.images.all().delete()
+        for image_file in files:
+            ProductImage.objects.create(
+                product=product, image=image_file)
+
+        return res
 
 
 class ProductDeleteView(DeleteView):

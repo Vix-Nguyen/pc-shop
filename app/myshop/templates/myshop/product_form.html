@@ -18,9 +18,9 @@
 <div class="outer">
   <div class="btn-group-vertical">
     {% if product %}
-      <a class="btn btn-outline-info" style="margin-left: 20px; margin-top: 20px;" href="{% url 'product_detail' product.id %}">Back</a>
+      <a class="btn btn-outline-info" style="margin-left: 20px; margin-top: 20px;" href="{% url 'product_detail' product.id %}">Cancel</a>
     {% else %}
-      <a class="btn btn-outline-info" style="margin-left: 20px; margin-top: 20px;" href="{% url 'index' %}">Back</a>
+      <a class="btn btn-outline-info" style="margin-left: 20px; margin-top: 20px;" href="{% url 'index' %}">Cancel</a>
     {% endif %}
   </div>
   {% comment %} TODO: Fix wrapper overflow <div class="center-wrapper"> {% endcomment %}
@@ -53,7 +53,8 @@
         {% endfor %}
 
         {% if product %}
-          <div class="row" style="margin: 20px;">
+          <div class="row m-3">
+            Current:
             {% for image in images %}
               <div class="col-auto">
                 <img src="{{ image.image.url }}" class="small-img">
@@ -61,7 +62,7 @@
             {% endfor %}
           </div>
         {% endif %}
-
+          <div class="images-preview row m-3">Preview:</div>
         </div>
         <br/>
         <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -69,12 +70,38 @@
     </div>
   {% comment %} </div>  {% endcomment %}
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
-  id_thumbnail.onchange = (evt) => {
-    const [file] = id_thumbnail.files;
-    if (file) {
-      thumbnail_preview.src = URL.createObjectURL(file);
-    }
-  };
+// Thumbnail (single image) preview
+id_thumbnail.onchange = (evt) => {
+  const [file] = id_thumbnail.files;
+  if (file) {
+    thumbnail_preview.src = URL.createObjectURL(file);
+  }
+};
+
+// Multiple images preview
+var imagesPreview = function(input, placeToInsertImagePreview) {
+  if (input.files) {
+      var filesAmount = input.files.length;
+
+      for (i = 0; i < filesAmount; i++) {
+          var reader = new FileReader();
+
+          reader.onload = function(event) {
+            $('<div class="col-auto"></div>').append(
+              $('<img>').attr('src', event.target.result).addClass('small-img')
+              ).appendTo(placeToInsertImagePreview);
+          }
+
+          reader.readAsDataURL(input.files[i]);
+      }
+  }
+
+};
+
+id_image.onchange = (evt) => {
+    imagesPreview(evt.target, 'div.images-preview');
+};
 </script>  
 {% endblock content %}
