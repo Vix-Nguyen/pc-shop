@@ -8,13 +8,7 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = [
-            "name",
-            "description",
-            "price",
-            "is_sold",
-            "thumbnail",
-        ]
+        fields = "__all__"
 
 
 class ImageForm(forms.ModelForm):

@@ -6,7 +6,7 @@ from django.urls import reverse
 class Product(models.Model):
     name = models.CharField(max_length=200, verbose_name="Name")
     active = models.BooleanField(verbose_name="Show", default=True)
-    is_sold = models.BooleanField(verbose_name="Is sold?", default=True)
+    is_new = models.BooleanField(verbose_name="Is new?", default=True)
     price = MoneyField(max_digits=9, decimal_places=0, default_currency='VND')
     thumbnail = models.ImageField(
         upload_to='thumbnail/', default='thumbnail/default.png', verbose_name='Thumbnail')
