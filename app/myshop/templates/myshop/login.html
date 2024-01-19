@@ -26,10 +26,10 @@
                         <input type="password" id="id_password" name="password" class="form-control" required>
                     </div>
                     {% if form.errors %}
-                    <p>Your username and password didn't match. Please try again.</p>
+                    <p class="errors">Your username and password didn't match. Please try again.</p>
                     {% endif %}
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        <button type="submit" class="btn btn-dark btn-block">Login</button>
                     </div>
                     <input type="hidden" name="next" value="{{ next }}">
                 </form>

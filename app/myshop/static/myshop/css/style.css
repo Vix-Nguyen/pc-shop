@@ -434,5 +434,9 @@ a:focus {
   color: #cbc9c9;
 }
 
+p.errors {
+  color: #db4566;
+}
+
 /* end footer section*/
 /*# sourceMappingURL=style.css.map */
