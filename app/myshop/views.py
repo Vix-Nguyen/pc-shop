@@ -1,8 +1,10 @@
 from typing import Any
 from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     ListView,
     CreateView,
@@ -15,12 +17,20 @@ from .forms import ImageForm, ProductForm
 from .models import Product, ProductImage
 
 
+class LoginPage(LoginView):
+    template_name = "myshop/login.html"
+
+
+class LogoutPage(LogoutView):
+    next_page = "/login"
+
+
 class HomePage(ListView):
     queryset = Product.objects.filter(active=True)
     template_name = "myshop/index.html"
 
 
-class ProductInactiveListView(ListView):
+class ProductInactiveListView(LoginRequiredMixin, ListView):
     queryset = Product.objects.filter(active=False)
     template_name = "myshop/index.html"
 
@@ -40,7 +50,7 @@ class ProductDetailView(DetailView):
         return context
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     fields = '__all__'
 
@@ -73,7 +83,7 @@ class ProductCreateView(CreateView):
             return HttpResponse(form.errors)
 
 
-class ProductEditView(UpdateView):
+class ProductEditView(LoginRequiredMixin, UpdateView):
     model = Product
     fields = '__all__'
 
@@ -98,7 +108,7 @@ class ProductEditView(UpdateView):
         return res
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     success_url = reverse_lazy("index")
 
