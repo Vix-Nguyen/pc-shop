@@ -32,33 +32,30 @@
 	width:90%; 	
 	border-radius:4px;
 }
-.shoe-slider{
-	background: #03849d05;
-	height: 100%;
+.product-slider{
+	background: white;
+	height: 90%;
+	margin-top: 10%;
+	padding-top: 10%;
+	margin-left: auto;
+	margin-right: auto;
 }
-.shoe-content{
+.product-content{
 	background: #fff;
-	position: relative; 
+	position: relative;
+	margin-top: 40px;
 }
 .text1{
 	width:100%;
 	height: auto;
 	border-left:1px solid #333333;
 	padding-left: 10px;
+	color: #03849D;
 }
-.text1 h2{
-	display: block;
-}
-.text1 h2:nth-child(1){
-	color:#03849D;
-}
-.text1 h2:nth-child(2){
-	color:#6b6b6b;
-	font-size: 13px;
-}
+
 .text2 {
     font-size: 30px;
-    color: #444;
+    color:crimson;
     padding-top: 10px;
     padding-bottom: 5px;
 }
@@ -98,10 +95,6 @@
     color: #fbfbfb;
     font-size: 14px;
     padding: 8px 48px;
-}
-.qantity .fas{
-	color:#dbdbdb;
-	font-size: 9px;
 }
 .one{
 	padding-left: 14px;
@@ -151,69 +144,19 @@
 	font-size: 12px;
 	box-shadow: 2px 5px 20px rgba(32,57,90,0.479);
 }
-.carousel .carousel-indicators{
-	bottom: -40px;
+.carousel .carousel-item{
+	height: 500px;
 }
-.carousel .carousel-indicators li{
-	width:60px;
-	height:60px;
-	border-radius: 50%;
-	border:none;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+
+
+.product-img {
+	max-width:	100%;
+	max-height:	100%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: white;
 }
-.carousel .carousel-indicators li img{
-	max-width: 80%;
-	height: auto;
-	vertical-align: middle;
-	border-radius: 50%;
-}
-.carousel .carousel-indicators li.active{
-	background: #fff;
-	box-shadow: 2px 5px 20px rgba(32,57,90,0.379);
-}
-.carousel .carousel-indicators li:nth-child(2){
-	margin-left: 50px;
-	margin-right: 50px;
-}
-.carousel-control-next,
-.carousel-control-prev{
-	position: absolute;
-	width:50px;
-	height:50px;	
-	top:92%;
-	z-index: 999999;
-}
-.carousel-control-prev-icon,
-.carousel-control-next-icon{
-	background-image: none;
-	width:10px;
-	height: 10px;
-	transform: rotate(45deg);
-}
-.carousel-control-prev-icon{
-	border-left:2px solid black;
-	border-bottom:2px solid black;	
-}
-.carousel-control-next-icon{
-	border-top:2px solid black;
-	border-right:2px solid black;	
-}
- .carousel-control-prev{
- 	left:33%;
- }
-  .carousel-control-next{
- 	right:33%;
- }
- span.qantity {
-    text-align: center;
-}
-.quantity-text {
-    color: #dbdbdb;
-    font-size: 9px;
-    margin-top: 4px;
-}
+
 @media only screen and (min-width:768px) and (max-width: 1024px) {
 	.center-wrapper{
 		height:auto;
@@ -226,9 +169,7 @@
 	.outer{
 		height:auto;
 	}
-	.shoe-content{
-		margin-top: 55px;
-	}
+
 	.center-wrapper{
 		height: auto;
 		margin: 20px;
@@ -252,27 +193,11 @@
 		top: 14%;
 		right: -12px;
 	}
-	.carousel .carousel-indicators li{
-		width:120px;
-		height:35px;
-	}
-	.carousel-control-next, .carousel-control-prev{
-		top:82%;
-	}
-	.carousel-control-prev{
-		left:27%;
-	}
-	.carousel-control-next{
-		right:27%;
-	}
-	.carousel .carousel-indicators{
-		bottom:-4px;
-	}
-	.text2{
+
+	.text2 {
 		font-size:22px;
 	}
-	.text3{
+	.text3 {
 		font-size:14px;
 	}
 }
-

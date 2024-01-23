@@ -13,7 +13,7 @@ class Price(models.PositiveIntegerField):
 
 class Product(models.Model):
     name = models.CharField(max_length=200, verbose_name="Name")
-    active = models.BooleanField(verbose_name="Show", default=True)
+    active = models.BooleanField(verbose_name="Show", default=False)
     is_new = models.BooleanField(verbose_name="Is new?", default=True)
     price = Price(verbose_name="Price")
     thumbnail = models.ImageField(
