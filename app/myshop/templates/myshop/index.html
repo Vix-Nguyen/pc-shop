@@ -90,12 +90,13 @@
         <div class="col-sm-6 col-md-4 col-lg-3">
           <div class="box">
             <a href="{% url 'product_detail' product.id %}">
-              <div class="img-box">
+              <div class="img-box main-product">
                 <img src="{{product.thumbnail.url}}" alt="" />
               </div>
               <div class="detail-box">
                 <h6>{{ product.name }}</h6>
               </div>
+              <div class="small-divider"></div>
               <div class="price">
                 <h6>
                   <span> {{ product.price|floatformat:0|intcomma }} </span>

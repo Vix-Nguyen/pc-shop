@@ -252,14 +252,18 @@ a:focus {
   justify-content: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center;
-  padding: 15px 30px;
-  height: 245px;
+}
+.shop_section .box .img-box.main-product {
+  height: 200px;
+}
+.shop_section .box .img-box.related-product {
+  height: 140px;
 }
 
 .shop_section .box .img-box img {
   max-width: 100%;
-  max-height: 145px;
+  max-height: 185px;
+  border-radius: 25px;
 }
 
 .shop_section .box .detail-box {
@@ -269,27 +273,24 @@ a:focus {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  color: #555;
+}
+
+.shop_section .box .detail-box h6 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .shop_section .box .price {
   width: 50px;
-  height: 50px;
-  position: absolute;
-  top: 10px;
-  left: 20px;
-  /* background-color: #ffffff; */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   /* border-radius: 100%; */
   font-size: 20px;
-  color: #db4566;
+  color: #111;
 }
 
 .shop_section .btn-box {
@@ -316,6 +317,14 @@ a:focus {
 .shop_section .btn-box a:hover {
   background-color: transparent;
   color: #f16179;
+}
+.small-divider {
+  height: 3px;
+  display: block;
+  background-color: rgba(0,0,0,.1);
+  margin: 0 0 1em;
+  width: 100%;
+  max-width: 30px;
 }
 
 /* info section */

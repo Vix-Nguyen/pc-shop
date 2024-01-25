@@ -1,4 +1,5 @@
-from typing import Any
+import random
+
 from django.db import models
 from django.urls import reverse
 
@@ -27,6 +28,17 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('product_detail', kwargs={'pk': self.pk})
 
+    def get_related_products(self):
+        all_products = Product.objects.exclude(id=self.id)
+
+        if all_products.count() > 5:
+            # Randomly select 5 products
+            # TODO: Implement better strategy
+            related_products = random.sample(list(all_products), 5)
+        else:
+            related_products = all_products
+
+        return related_products
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product,

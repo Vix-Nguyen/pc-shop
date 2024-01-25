@@ -26,10 +26,10 @@
       </a>
     {% endif %}
   </div>
-  <div class="center-wrapper">
-    <div class="container-fluid content mt-5 mb-5">
+  {% comment %} <div class="center-wrapper"> {% endcomment %}
+    <div class="container-fluid content">
       <div class="row">
-        <div class="product-slider center">
+        <div class="col-8 col-sm-8 col-md-8 product-slider">
           <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 {% for image in images %}
@@ -57,18 +57,14 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="product-content">
+        <div class="col-4 col-sm-4 col-md-4 product-content">
           <div class="text1">
             <h3>{{ product.name }}</h3>
           </div>
+          <div class="is-divider"></div>
           <div class="text2">
             {{ product.price|floatformat:0|intcomma }}
           </div>
-          <div class="text3">
-            {{ product.description|linebreaks }}
-          </div> 
           <a href="https://github.com/Vix-Nguyen">
             <div class="btn-wrapper">
               <span class="btn">BUY</span> 
@@ -76,8 +72,37 @@
           </a>
         </div>
       </div>
+      <div class="row">
+        <div class="text3">
+          {{ product.description|linebreaks }}
+        </div> 
+      </div>
+      <div class="big-divider"></div>
+      <div class="row m-1">
+        <h4>Related products</h4>
+        <div class="row shop_section">
+          {% for related_product in product.get_related_products %}
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="box">
+              <a href="{% url 'product_detail' related_product.id %}">
+                <div class="img-box related-product">
+                  <img src="{{ related_product.thumbnail.url }}" alt="" />
+                </div>
+                <div class="detail-box mt-3">
+                  <h6>{{ related_product.name }}</h6>
+                </div>
+                <div class="price">
+                  <h6>
+                    <span> {{ related_product.price|floatformat:0|intcomma }} </span>
+                  </h6>
+                </div>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
     </div>
-  </div> 
+  {% comment %} </div> {% endcomment %}
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
