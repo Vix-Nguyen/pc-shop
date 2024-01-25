@@ -99,6 +99,9 @@ class ProductEditView(LoginRequiredMixin, UpdateView):
         res = super().post(request, *args, **kwargs)
         files = request.FILES.getlist("image")
 
+        if not files:
+            return res
+        
         product = self.get_object()
         product.images.all().delete()
         for image_file in files:
