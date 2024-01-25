@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'myshop.apps.MyshopConfig',
     # third party
     'widget_tweaks',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
