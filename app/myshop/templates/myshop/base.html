@@ -1,48 +1,82 @@
 <head>
-    <!-- Basic -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- Mobile Metas -->
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <!-- Site Metas -->
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
-  
-    {% block title %}{% endblock title %}
-    {% load static %}
-    <!-- slider stylesheet -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-    />
-  
-    <!-- bootstrap core css -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'myshop/css/bootstrap.css' %}"
-    />
-  
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="{% static 'myshop/css/style.css' %}" />
-    <!-- responsive style -->
-    <link rel="stylesheet" href="{% static 'myshop/css/responsive.css' %}" />
-    {% block custom_style %}{% endblock custom_style %}
-  </head>
-  
-  <body>
-    {% block headers %}{% endblock headers %}
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
 
-    {% block content %}{% endblock content %}
-  </body>
-    
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-  <script src="js/custom.js"></script>
+  {% block title %}
+  {% endblock %} {% load static %}
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'myshop/css/bootstrap.css' %}" />
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="{% static 'myshop/css/style.css' %}" />
+  <!-- responsive style -->
+  <link rel="stylesheet" href="{% static 'myshop/css/responsive.css' %}" />
+  {% block custom_style %}
+  {% endblock %}
+</head>
+
+<body>
+  <header class="header_section">
+    <nav class="navbar navbar-expand-lg fixed-top custom_nav-container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class=""></span></button>
+      <a class="navbar-brand flex-grow-1" href="/"><span>My Shop</span></a>
+      <div class="collapse navbar-collapse flex-grow-1 justify-content-center" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#shop_section">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#footer_section">Contact</a>
+          </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a href="{% url 'product_create' %}" class="btn btn-outline-success">Add Product</a>
+            </li>
+            {% if inactive %}
+              <li class="nav-item ml-2">
+                <a href="{% url 'index' %}" class="btn btn-outline-secondary">View active</a>
+              </li>
+            {% else %}
+              <li class="nav-item ml-2">
+                <a href="{% url 'products_inactive' %}" class="btn btn-outline-secondary">View inactive</a>
+              </li>
+            {% endif %}
+            <li class="nav-item ml-5">
+              <a href="{% url 'logout' %}">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <span>Logout</span>
+              </a>
+            </li>
+          {% endif %}
+          {% comment %}TODO: Implement search{% endcomment %}
+          {% comment %}
+          <form class="form-inline">
+            <button class="btn nav_search-btn" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </form>
+          {% endcomment %}
+        </ul>
+      </div>
+    </nav>
+  </header>
+  {% block content %}
+  {% endblock %}
+</body>
+
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="js/custom.js"></script>

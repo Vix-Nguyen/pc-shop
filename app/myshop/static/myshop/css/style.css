@@ -8,7 +8,7 @@ body {
 }
 
 .layout_padding {
-  padding-top: 90px;
+  padding-top: 60px;
   padding-bottom: 90px;
 }
 
@@ -33,6 +33,10 @@ body {
   padding-bottom: 90px;
 }
 
+.header_section {
+  padding-top: 50px;
+}
+
 .heading_container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -48,10 +52,6 @@ body {
   font-weight: bold;
 }
 
-.heading_container h2 span {
-  color: #f89cab;
-}
-
 .heading_container.heading_center {
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -61,7 +61,6 @@ body {
 
 #navbarSupportedContent {
   width: 100%;
-  background-color: #f9ece6;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
@@ -111,8 +110,8 @@ a:focus {
 }
 
 .navbar-brand {
-  margin: 15px 0;
-  padding: 0;
+  position: fixed;
+  padding: 20px;
 }
 
 .navbar-brand span {
@@ -134,11 +133,10 @@ a:focus {
   padding: 0;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  background-color: #f9ece6;
 }
 
 .custom_nav-container .navbar-toggler {
@@ -253,9 +251,11 @@ a:focus {
   -webkit-box-align: center;
   -ms-flex-align: center;
 }
+
 .shop_section .box .img-box.main-product {
   height: 200px;
 }
+
 .shop_section .box .img-box.related-product {
   height: 140px;
 }
@@ -318,10 +318,11 @@ a:focus {
   background-color: transparent;
   color: #f16179;
 }
+
 .small-divider {
   height: 3px;
   display: block;
-  background-color: rgba(0,0,0,.1);
+  background-color: rgba(0, 0, 0, .1);
   margin: 0 0 1em;
   width: 100%;
   max-width: 30px;

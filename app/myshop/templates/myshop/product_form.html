@@ -1,10 +1,10 @@
-{% extends "myshop/base.html" %}
+{% extends 'myshop/base.html' %}
 {% load widget_tweaks %}
 {% load static %}
 
 {% block custom_style %}
   <link rel="stylesheet" href="{% static 'myshop/css/product_form_style.css' %}" />
-{% endblock custom_style %}
+{% endblock %}
 
 {% block title %}
   {% if product %}
@@ -12,96 +12,94 @@
   {% else %}
     <title>Create New Product</title>
   {% endif %}
-{% endblock title %}
+{% endblock %}
 
 {% block content %}
-<div class="outer">
-  <div class="btn-group-vertical">
-    {% if product %}
-      <a class="btn btn-outline-info" style="margin-left: 20px; margin-top: 20px;" href="{% url 'product_detail' product.id %}">Cancel</a>
-    {% else %}
-      <a class="btn btn-outline-info" style="margin-left: 20px; margin-top: 20px;" href="{% url 'index' %}">Cancel</a>
-    {% endif %}
-  </div>
-  {% comment %} TODO: Fix wrapper overflow <div class="center-wrapper"> {% endcomment %}
-    <div class="container-fluid content">
+  <div class="outer">
+    <div class="btn-group-vertical">
       {% if product %}
-        <h3>Edit Product - {{ product.name }}</h3>
+        <a class="btn btn-outline-info" style="margin-left: 20px; margin-top: 20px;" href="{% url 'product_detail' product.id %}">Cancel</a>
       {% else %}
-        <h3>Create New Product</h3>
+        <a class="btn btn-outline-info" style="margin-left: 20px; margin-top: 20px;" href="{% url 'index' %}">Cancel</a>
       {% endif %}
-      <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% for field in form %} 
-          <div class="form-group">
-            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-            {% render_field field class+="form-control" %}
-            {% if field == form.thumbnail %}
-              <br/>
-              Preview: 
-              <img id="thumbnail_preview" src="{{ field.value.url }}" alt="your image" class="thumbnail" />
-        {% endif %}
-          </div>
-        {% endfor %}
-        <label for="product_images">Product Images: </label>
-        <div>
-        {% for formset in imageform %}
-          {{ formset.management_form }}
-          {% for form in formset %}
-            {{ form }}
-          {% endfor %}
-        {% endfor %}
-
-        {% if product %}
-          <div class="row m-3">
-            Current:
-            {% for image in images %}
-              <div class="col-auto">
-                <img src="{{ image.image.url }}" class="small-img">
-              </div>
-            {% endfor %}
-          </div>
-        {% endif %}
-          <div class="images-preview row m-3">Preview:</div>
-        </div>
-        <br/>
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-      </form>
     </div>
-  {% comment %} </div>  {% endcomment %}
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script>
-// Thumbnail (single image) preview
-id_thumbnail.onchange = (evt) => {
-  const [file] = id_thumbnail.files;
-  if (file) {
-    thumbnail_preview.src = URL.createObjectURL(file);
-  }
-};
+    {% comment %}TODO: Fix wrapper overflow<div class="center-wrapper">
+      {% endcomment %}
+      <div class="container-fluid content">
+        {% if product %}
+          <h3>Edit Product - {{ product.name }}</h3>
+        {% else %}
+          <h3>Create New Product</h3>
+        {% endif %}
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {% for field in form %}
+            <div class="form-group">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {% render_field field class+='form-control' %}
+              {% if field == form.thumbnail %}
+                <br />
+                Preview:
+                <img id="thumbnail_preview" src="{{ field.value.url }}" alt="your image" class="thumbnail" />
+              {% endif %}
+            </div>
+          {% endfor %}
+          <label for="product_images">Product Images:</label>
+          <div>
+            {% for formset in imageform %}
+              {{ formset.management_form }}
+              {% for form in formset %}
+                {{ form }}
+              {% endfor %}
+            {% endfor %}
 
-// Multiple images preview
-var imagesPreview = function(input, placeToInsertImagePreview) {
-  if (input.files) {
-      var filesAmount = input.files.length;
-
-      for (i = 0; i < filesAmount; i++) {
-          var reader = new FileReader();
-
-          reader.onload = function(event) {
-            $('<div class="col-auto"></div>').append(
-              $('<img>').attr('src', event.target.result).addClass('small-img')
-              ).appendTo(placeToInsertImagePreview);
-          }
-
-          reader.readAsDataURL(input.files[i]);
+            {% if product %}
+              <div class="row m-3">
+                Current:{% for image in images %}
+                  <div class="col-auto">
+                    <img src="{{ image.image.url }}" class="small-img" />
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+            <div class="images-preview row m-3">Preview:</div>
+          </div>
+          <br />
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+      </div>
+      {% comment %}
+    </div> {% endcomment %}
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+    // Thumbnail (single image) preview
+    id_thumbnail.onchange = (evt) => {
+      const [file] = id_thumbnail.files
+      if (file) {
+        thumbnail_preview.src = URL.createObjectURL(file)
       }
-  }
-
-};
-
-id_image.onchange = (evt) => {
-    imagesPreview(evt.target, 'div.images-preview');
-};
-</script>  
-{% endblock content %}
+    }
+    
+    // Multiple images preview
+    var imagesPreview = function (input, placeToInsertImagePreview) {
+      if (input.files) {
+        var filesAmount = input.files.length
+    
+        for (i = 0; i < filesAmount; i++) {
+          var reader = new FileReader()
+    
+          reader.onload = function (event) {
+            $('<div class="col-auto"></div>').append($('<img>').attr('src', event.target.result).addClass('small-img')).appendTo(placeToInsertImagePreview)
+          }
+    
+          reader.readAsDataURL(input.files[i])
+        }
+      }
+    }
+    
+    id_image.onchange = (evt) => {
+      imagesPreview(evt.target, 'div.images-preview')
+    }
+  </script>
+{% endblock %}
