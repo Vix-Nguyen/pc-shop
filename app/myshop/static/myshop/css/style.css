@@ -129,7 +129,7 @@ a:focus {
 }
 
 .custom_nav-container {
-  z-index: 99999;
+  z-index: 50;
   padding: 0;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;

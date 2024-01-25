@@ -178,7 +178,7 @@
 }
 
 .expand-img {
-	z-index: 30;
+	z-index: 100;
 	display: none;
 	padding: 30px;
 	position: fixed;
