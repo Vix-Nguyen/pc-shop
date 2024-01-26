@@ -32,9 +32,9 @@ class Product(models.Model):
         all_products = Product.objects.exclude(id=self.id)
 
         if all_products.count() > 5:
-            # Randomly select 5 products
+            # Randomly select 4 products
             # TODO: Implement better strategy
-            related_products = random.sample(list(all_products), 5)
+            related_products = random.sample(list(all_products), 4)
         else:
             related_products = all_products
 
