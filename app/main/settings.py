@@ -16,6 +16,8 @@ from environs import Env
 from dotenv import load_dotenv
 from dotenv import find_dotenv
 
+import dj_database_url
+
 
 env = Env()
 load_dotenv(find_dotenv())
@@ -92,14 +94,11 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydb',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'postgres',
-        'PORT': 5432,
-    }
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgres://postgres_user:YQGmrSeQiWNZD2cJyimpWyom4mxz1zbE@dpg-cmpthjnqd2ns738tjt6g-a/mydb_p8sz',
+        conn_max_age=600
+    )
 }
 
 
