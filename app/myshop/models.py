@@ -4,19 +4,11 @@ from django.db import models
 from django.urls import reverse
 
 
-class Price(models.PositiveIntegerField):
-
-    def __str__(self) -> str:
-        value = self
-        print(value)
-        return super().__str__()
-
-
 class Product(models.Model):
     name = models.CharField(max_length=200, verbose_name="Name")
     active = models.BooleanField(verbose_name="Show", default=False)
     is_new = models.BooleanField(verbose_name="Is new?", default=True)
-    price = Price(verbose_name="Price")
+    price = models.PositiveIntegerField(verbose_name="Price")
     thumbnail = models.ImageField(
         upload_to='thumbnail/', default='thumbnail/default.png', verbose_name='Thumbnail')
     description = models.TextField(
@@ -39,6 +31,7 @@ class Product(models.Model):
             related_products = all_products
 
         return related_products
+
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product,
