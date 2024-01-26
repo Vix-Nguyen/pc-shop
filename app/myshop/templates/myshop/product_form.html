@@ -8,9 +8,9 @@
 
 {% block title %}
   {% if product %}
-    <title>Edit Product - {{ product.name }}</title>
+    <title>Edit - {{ product.name }}</title>
   {% else %}
-    <title>Create New Product</title>
+    <title>Thêm SP mới</title>
   {% endif %}
 {% endblock %}
 
@@ -27,9 +27,9 @@
       {% endcomment %}
       <div class="container-fluid content">
         {% if product %}
-          <h3>Edit Product - {{ product.name }}</h3>
+          <h3>Edit - {{ product.name }}</h3>
         {% else %}
-          <h3>Create New Product</h3>
+          <h3>Thêm SP mới</h3>
         {% endif %}
         <form method="post" enctype="multipart/form-data">
           {% csrf_token %}
@@ -44,7 +44,7 @@
               {% endif %}
             </div>
           {% endfor %}
-          <label for="product_images">Product Images:</label>
+          <label for="product_images">Ảnh SP:</label>
           <div>
             {% for formset in imageform %}
               {{ formset.management_form }}
@@ -65,7 +65,7 @@
             <div class="images-preview row m-3">Preview:</div>
           </div>
           <br />
-          <button type="submit" class="btn btn-primary">Save Changes</button>
+          <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
       </div>
       {% comment %}

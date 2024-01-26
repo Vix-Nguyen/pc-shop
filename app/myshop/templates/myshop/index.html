@@ -2,14 +2,14 @@
 {% load humanize %}
 
 {% block title %}
-  <title>Home</title>
+  <title>Trang chủ</title>
 {% endblock %}
 {% block content %}
   <!-- shop section -->
   <section id="shop_section" class="shop_section layout_padding">
     <div class="container">
       <div class="heading_container heading_center">
-        <h2>Products</h2>
+        <h2>Danh sách sản phẩm</h2>
       </div>
       {% if product_list %}
         <div class="row">
@@ -33,7 +33,7 @@
           {% endfor %}
         </div>
       {% else %}
-        <p>No products to show.</p>
+        <p>Hiện tại chưa có hàng.</p>
       {% endif %}
       {% comment %}
       <div class="btn-box">
@@ -46,49 +46,51 @@
   <!-- end shop section -->
   <!-- info section -->
 
-  <section class="info_section layout_padding2-top">
-    <div class="social_container">
-      <div class="social_box">
-        <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
-        <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
-        <a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a>
-        <a href=""><i class="fa fa-youtube" aria-hidden="true"></i></a>
-      </div>
-    </div>
+  <section id="info_section" class="info_section layout_padding2-top">
     <div class="info_container">
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-lg-3">
-            <h6>ABOUT US</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet,</p>
+            <h6>
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              &ensp;Vi tính Duy Quang
+            </h6>
+            <p>Quốc lộ 1A, Khu phố 2, Thị trấn Hòa Vinh, Huyện Đông Hòa, Tỉnh Phú Yên.
+            Nằm cạnh công viên Trường Thịnh.</p>
           </div>
           <div class="col-md-6 col-lg-3">
-            <div class="info_form">
-              <h5>Newsletter</h5>
-              <form action="#">
-                <input type="email" placeholder="Enter your email" />
-                <button>Subscribe</button>
-              </form>
+            <div class="map_container">
+              <div class="map-responsive">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1943.8197993446206!2d109.32954512590149!3d12.99488789789447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x316fef77d8376251%3A0x7ffdb1ed1cb7d789!2zQ-G7rWEgSMOgbmcgVmkgVMOtbmggRHV5IFF1YW5n!5e0!3m2!1svi!2s!4v1706202480989!5m2!1svi!2s"
+                  width="100%"
+                  height="100%"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>              
+              </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-3">
-            <h6>NEED HELP</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet,</p>
+            <h6>CẦN TƯ VẤN</h6>
+            <p>Gọi ngay cho cửa hàng hoặc liên hệ Zalo, Facebook để biết thêm thông tin.</p>
           </div>
           <div class="col-md-6 col-lg-3">
-            <h6>CONTACT US</h6>
+            <h6>LIÊN HỆ MUA HÀNG</h6>
             <div class="info_link-box">
-              <a href="">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <span>Gb road 123 london Uk</span>
+              <a href="https://www.facebook.com/vitinhduyquang">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+                <span>fb.com/vitinhduyquang</span>
               </a>
               <a href="">
                 <i class="fa fa-phone" aria-hidden="true"></i>
-                <span>+01 12345678901</span>
+                <span>0918237468</span>
               </a>
               <a href="">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
-                <span>demo@gmail.com</span>
+                <span>Vitinhduyquang@gmail.com</span>
               </a>
             </div>
           </div>
@@ -99,8 +101,8 @@
     <footer class="footer_section">
       <div class="container">
         <p>
-          &copy; <span id="displayYear"></span> All Rights Reserved By
-          <a href="https://html.design/">Free Html Templates</a>
+          &copy; <span id="displayYear"></span> Copyright 2024
+          <a href="https://www.facebook.com/vitinhduyquang/">Vi tính Duy Quang</a>
         </p>
       </div>
     </footer>

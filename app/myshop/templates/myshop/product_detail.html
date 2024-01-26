@@ -6,23 +6,23 @@
   <link rel="stylesheet" href="{% static 'myshop/css/product_style.css' %}" />
 {% endblock custom_style %}
 {% block title %}
-  <title>Product {{product.name}}</title>
+  <title>{{product.name}}</title>
 {% endblock title %}
 {% block content %}
 <div class="outer">
   <div class="btn-group-vertical">
-    <a class="btn btn-outline-info" style="margin-left: 20px; margin-top: 20px;" href="/">Back</a>
+    <a class="btn btn-outline-info" style="margin-left: 20px; margin-top: 20px;" href="/">Quay lại</a>
     {% if request.user.is_authenticated %}
       <a class="btn btn-outline-warning" 
         style="margin-left: 20px; margin-top: 20px;"
         href="{% url 'product_edit' product.id %}">
-          Edit
+        Sửa
       </a>
       <a class="btn btn-outline-danger" 
         style="margin-left: 20px; margin-top: 20px;" 
         onclick="return confirm('Are you sure?');" 
         href="{% url 'product_delete' product.id %}">
-        Delete
+        Xóa
       </a>
     {% endif %}
   </div>
@@ -75,19 +75,21 @@
           </div>
           <a href="https://github.com/Vix-Nguyen">
             <div class="btn-wrapper">
-              <span class="btn">BUY</span> 
+              <span class="btn">MUA LUÔN</span> 
             </div>
           </a>
         </div>
       </div>
       <div class="row">
         <div class="text3">
+          <h5>Thông số kỹ thuật</h5>
+          <div class="is-divider"></div>
           {{ product.description|linebreaks }}
         </div> 
       </div>
       <div class="big-divider"></div>
       <div class="m-1">
-        <h4>Related products</h4>
+        <h4>Sản phẩm khác</h4>
         <div class="row shop_section">
           {% for related_product in product.get_related_products %}
           <div class="col-sm-6 col-md-4 col-lg-3">
