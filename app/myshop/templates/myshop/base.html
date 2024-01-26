@@ -11,7 +11,8 @@
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
 
   {% block title %}
-  {% endblock %} {% load static %}
+  {% endblock %}
+  {% load static %}
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
@@ -43,23 +44,22 @@
             <a class="nav-link" href="#footer_section">Contact</a>
           </li>
           {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a href="{% url 'product_create' %}" class="btn btn-outline-success">Add Product</a>
-            </li>
-            {% if inactive %}
-              <li class="nav-item ml-2">
-                <a href="{% url 'index' %}" class="btn btn-outline-secondary">View active</a>
-              </li>
-            {% else %}
-              <li class="nav-item ml-2">
-                <a href="{% url 'products_inactive' %}" class="btn btn-outline-secondary">View inactive</a>
-              </li>
-            {% endif %}
-            <li class="nav-item ml-5">
-              <a href="{% url 'logout' %}">
-                <i class="fa fa-sign-out" aria-hidden="true"></i>
-                <span>Logout</span>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Action
               </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a href="{% url 'product_create' %}" class="dropdown-item">Add Product</a>
+                {% if inactive %}
+                  <a href="{% url 'index' %}" class="dropdown-item">View active</a>
+                {% else %}
+                  <a href="{% url 'products_inactive' %}" class="dropdown-item">View inactive</a>
+                {% endif %}
+                <a href="{% url 'logout' %}" class="dropdown-item">
+                  <i class="fa fa-sign-out" aria-hidden="true"></i>
+                  <span>Logout</span>
+                </a>
+              </div>
             </li>
           {% endif %}
           {% comment %}TODO: Implement search{% endcomment %}
@@ -76,7 +76,7 @@
   {% endblock %}
 </body>
 
-<script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="js/custom.js"></script>
