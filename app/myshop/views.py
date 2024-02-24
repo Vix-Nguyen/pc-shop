@@ -1,7 +1,7 @@
 from typing import Any
 from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -12,9 +12,10 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
+from django.db.models import Q
 
 from .forms import ImageForm, ProductForm
-from .models import Product, ProductImage
+from .models import Category, Product, ProductImage
 
 
 class LoginPage(LoginView):
@@ -32,7 +33,6 @@ class HomePage(ListView):
 
 class ProductInactiveListView(LoginRequiredMixin, ListView):
     queryset = Product.objects.filter(active=False)
-    template_name = "myshop/index.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -117,3 +117,22 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
+
+
+class ProductByCategoryListView(LoginRequiredMixin, ListView):
+    model = Product
+
+    def get_queryset(self):
+        slug = self.kwargs['slug']
+        category = get_object_or_404(Category, slug=slug)
+        filter_cond = Q(category=category)
+        for subcateg in category.subcategories.all():
+            filter_cond |= Q(category=subcateg)
+
+        return Product.objects.filter(filter_cond)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        slug = self.kwargs['slug']
+        context['category'] = get_object_or_404(Category, slug=slug)
+        return context

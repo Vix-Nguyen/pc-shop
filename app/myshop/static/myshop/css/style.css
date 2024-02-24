@@ -225,6 +225,14 @@ a:focus {
   margin-left: 5px;
 }
 
+.dropdown-menu.inline {
+  margin-right:-1000px;
+}
+
+.dropdown-menu.inline > li {
+  display: inline-block;
+}
+
 /*end header section*/
 
 .shop_section .heading_container {
