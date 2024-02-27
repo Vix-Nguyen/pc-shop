@@ -15,7 +15,7 @@ from django.views.generic import (
 from django.db.models import Q
 
 from .forms import ImageForm, ProductForm
-from .models import Category, Product, ProductImage
+from .models import Category, Product, ProductImage, Thumbnail
 
 
 class LoginPage(LoginView):
@@ -29,6 +29,11 @@ class LogoutPage(LogoutView):
 class HomePage(ListView):
     queryset = Product.objects.filter(active=True)
     template_name = "myshop/index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["thumnails"] = Thumbnail.objects.all()
+        return context
 
 
 class ProductInactiveListView(LoginRequiredMixin, ListView):

@@ -1,3 +1,17 @@
+
+.slider_section .detail-box {
+    padding-left: 0;
+}
+
+.slider_section .detail-box h1 {
+    font-size: 3rem;
+}
+
+.slider_section .img-box {
+    padding: 0;
+}
+
+
 @media (max-width: 1120px) {
     .saving_section .detail-box {
         padding: 0;

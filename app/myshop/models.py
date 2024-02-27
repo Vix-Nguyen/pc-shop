@@ -70,3 +70,7 @@ class ProductImage(models.Model):
                                 related_name="images",
                                 null=False)
     image = models.ImageField()
+
+
+class Thumbnail(models.Model):
+    image = models.ImageField()
