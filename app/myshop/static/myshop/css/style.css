@@ -238,9 +238,8 @@ a:focus {
 .slider_section .slider_container {
   color: #fefefe;
   /* background-color: #000000; */
-  background: linear-gradient(to bottom, #d7d2cc 0%, #304352 100%);
+  background: linear-gradient(to left, #d7d2cc 0%, #304352 100%);
   padding: 25px;
-  border-radius: 0 0 15px 15px;
 }
 
 .slider_section .row {
@@ -262,6 +261,7 @@ a:focus {
 .slider_section .img-box img {
   height: 500px;
   border-radius: 1rem;
+  padding: 10px;
 }
 
 .slider_section .detail-box {
@@ -325,6 +325,12 @@ a:focus {
   color: #000000;
   font-size: 14px;
 }
+/* 
+.slider_section .intro-text {
+  position: absolute;
+  top: 50px;
+  background: rgba(39, 45, 45, 0.4);
+} */
 
 .shop_section .heading_container {
   margin-bottom: 20px;
