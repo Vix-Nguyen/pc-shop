@@ -1,112 +1,56 @@
-{% extends 'myshop/base.html' %}
-{% load humanize %}
+  {% extends 'myshop/product_list.html' %}
+  {% load humanize %}
 
-{% block title %}
-  <title>Trang chủ</title>
-{% endblock %}
-{% block content %}
-  <!-- shop section -->
-  <section id="shop_section" class="shop_section layout_padding">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>Danh sách sản phẩm</h2>
-      </div>
-      {% if product_list %}
-        <div class="row">
-          {% for product in product_list %}
-            <div class="col-sm-6 col-md-4 col-lg-3">
-              <div class="box">
-                <a href="{% url 'product_detail' product.id %}">
-                  <div class="img-box main-product">
-                    <img src="{{ product.thumbnail.url }}" alt="" />
+  {% block title %}
+    <title>Trang chủ</title>
+  {% endblock %}
+  {% block slider %}
+    <!-- slider section -->
+    <section class="slider_section">
+      <div class="slider_container">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="2000">
+          <div class="carousel-inner">
+            {% for thumbnail in thumnails %}
+            <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="detail-box">
+                      <h1>
+                        Chào mừng tới <br>
+                        Vi tính Duy Quang
+                      </h1>
+                      <p>
+                        Quốc lộ 1A, Khu phố 2, TT Hòa Vinh, Đông Hòa
+                      </p>
+                      <a href="">
+                        Liên hệ ngay
+                      </a>
+                    </div>
                   </div>
-                  <div class="detail-box">
-                    <h6>{{ product.name }}</h6>
+                  <div class="col-md-8">
+                    <div class="img-box">
+                      <img src="{{ thumbnail.image.url }}" alt="" />
+                    </div>
                   </div>
-                  <div class="small-divider"></div>
-                  <div class="price">
-                    <h6><span>{{ product.price|floatformat:0|intcomma }}</span></h6>
-                  </div>
-                </a>
+                </div>
               </div>
             </div>
-          {% endfor %}
-        </div>
-      {% else %}
-        <p>Hiện tại chưa có hàng.</p>
-      {% endif %}
-      {% comment %}
-      <div class="btn-box">
-        <a href="">View All Products</a>
-      </div>
-      {% endcomment %}
-    </div>
-  </section>
-
-  <!-- end shop section -->
-  <!-- info section -->
-
-  <section id="info_section" class="info_section layout_padding2-top">
-    <div class="info_container">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-lg-3">
-            <h6>
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
-              &ensp;Vi tính Duy Quang
-            </h6>
-            <p>Quốc lộ 1A, Khu phố 2, Thị trấn Hòa Vinh, Huyện Đông Hòa, Tỉnh Phú Yên.
-            Nằm cạnh công viên Trường Thịnh.</p>
+            {% endfor %}
           </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="map_container">
-              <div class="map-responsive">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1943.8197993446206!2d109.32954512590149!3d12.99488789789447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x316fef77d8376251%3A0x7ffdb1ed1cb7d789!2zQ-G7rWEgSMOgbmcgVmkgVMOtbmggRHV5IFF1YW5n!5e0!3m2!1svi!2s!4v1706202480989!5m2!1svi!2s"
-                  width="100%"
-                  height="100%"
-                  style="border: 0"
-                  allowfullscreen=""
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                ></iframe>              
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <h6>CẦN TƯ VẤN</h6>
-            <p>Gọi ngay cho cửa hàng hoặc liên hệ Zalo, Facebook để biết thêm thông tin.</p>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <h6>LIÊN HỆ MUA HÀNG</h6>
-            <div class="info_link-box">
-              <a href="https://www.facebook.com/vitinhduyquang">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-                <span>fb.com/vitinhduyquang</span>
-              </a>
-              <a href="">
-                <i class="fa fa-phone" aria-hidden="true"></i>
-                <span>0918237468</span>
-              </a>
-              <a href="">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-                <span>Vitinhduyquang@gmail.com</span>
-              </a>
-            </div>
+          <div class="carousel_btn-box">
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+              <span class="sr-only">Previous</span>
+            </a>
+            <img src="images/line.png" alt="" />
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
         </div>
       </div>
-    </div>
-    <!-- footer section -->
-    <footer class="footer_section">
-      <div class="container">
-        <p>
-          &copy; <span id="displayYear"></span> Copyright 2024
-          <a href="https://www.facebook.com/vitinhduyquang/">Vi tính Duy Quang</a>
-        </p>
-      </div>
-    </footer>
-    <!-- footer section -->
-  </section>
-  <!-- end info section -->
-{% endblock %}
+    </section>
+    <!-- end slider section -->
+  {% endblock %}
