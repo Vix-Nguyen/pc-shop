@@ -5,7 +5,7 @@ A simple django web, using Postgres as database
 ## Usage
 Building image:
 ```shell
-docker build -t pc-shop-web:latest ./app
+docker build -t pc-shop-web:latest .
 ```
 Run containter:
 ```shell

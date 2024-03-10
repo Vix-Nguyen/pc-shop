@@ -1,15 +1,21 @@
 version: "3.9"
 
 services:
-  web: 
+  web:
+    build:
+      dockerfile: Dockerfile
     image: pc-shop-web:latest
-    ports:
-      - '8000:8000'
+    command: gunicorn main.wsgi:application --bind 0.0.0.0:8000
+    # ports:
+    #   - '8000:8000'
+    expose:
+      - 8000
     working_dir: /app
     volumes:
       - ./app:/app
-    networks:
-      - internal
+      - static_volume:/app/staticfiles
+    depends_on:
+      - postgres
   postgres:
     image: postgres:14
     volumes: 
@@ -18,11 +24,18 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=mydb
-    networks:
-      - internal
+  nginx:
+    build: ./nginx
+    ports:
+      - 1337:80
+    depends_on:
+      - web
+    volumes:
+      - static_volume:/app/staticfiles
 
 networks:
   internal:
 
 volumes:
   postgres_data:
+  static_volume:
