@@ -35,34 +35,15 @@
             <a class="nav-link" href="/">Trang chủ</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Category
+            <a class="nav-link" data-toggle="dropdown">
+              Category <span style="font-size: x-small; vertical-align: middle;">▼</span>
             </a>
-            <ul class="dropdown-menu inline">
+            <ul class="dropdown-menu">
               {% for categ in categories %}
                 <li class="dropdown">
-                  {% if categ.subcategs %}
-                  <a class="dropdown-item dropdown-toggle" 
-                    id="navbarDropdownMenuLink2"
-                    data-bs-toggle="dropdown" 
-                    aria-haspopup="true" 
-                    aria-expanded="false"
-                    href="{% url 'category' categ.slug %}"
-                  >{{ categ.name }}</a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
-                    {% for sub_categ in categ.subcategs %}
-                    <li>
-                      <a class="dropdown-item" href="{% url 'category' sub_categ.slug %}">
-                        {{ sub_categ.name }}
-                      </a>
-                    </li>
-                    {% endfor %}
-                  </ul>
-                  {% else %}
                   <a class="dropdown-item" 
                     href="{% url 'category' categ.slug %}"
                   >{{ categ.name }}</a>
-                  {% endif %}
                 </li>
               {% endfor %}
             </ul>
@@ -75,7 +56,7 @@
           </li>
           {% if user.is_authenticated %}
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Action
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

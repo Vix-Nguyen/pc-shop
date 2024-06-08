@@ -124,7 +124,7 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
         return self.post(request, *args, **kwargs)
 
 
-class ProductByCategoryListView(LoginRequiredMixin, ListView):
+class ProductByCategoryListView(ListView):
     model = Product
 
     def get_queryset(self):

@@ -86,6 +86,12 @@ body {
   text-transform: uppercase;
   border-radius: 5px;
   font-family: "poppins", sans-serif;
+  cursor: pointer;
+}
+
+#navbarSupportedContent .navbar-nav .nav-item:hover {
+  background-color: black;
+  border-radius: 5px;
 }
 
 /* #navbarSupportedContent .nav-item.active .nav-link {

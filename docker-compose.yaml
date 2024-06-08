@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3"
 
 services:
   web:
@@ -26,12 +26,16 @@ services:
       - POSTGRES_DB=mydb
   nginx:
     build: ./nginx
+    restart: unless-stopped
     ports:
-      - 1337:80
+      - 80:80
+      - 443:443
     depends_on:
       - web
     volumes:
       - static_volume:/app/staticfiles
+      - /etc/letsencrypt/ssl/fullchain.pem:/etc/nginx/ssl/fullchain.pem
+      - /etc/letsencrypt/ssl/privkey.pem:/etc/nginx/ssl/privkey.pem
 
 networks:
   internal:
