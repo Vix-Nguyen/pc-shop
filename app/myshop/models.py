@@ -39,7 +39,7 @@ class Product(models.Model):
     active = models.BooleanField(verbose_name="Show", default=True)
     price = models.PositiveIntegerField(verbose_name="Price")
     category = models.ForeignKey(
-        Category, verbose_name="Category", null=True, on_delete=models.SET_NULL)
+        Category, verbose_name="Category", null=True, on_delete=models.SET_NULL, related_name="products")
     thumbnail = models.ImageField(
         upload_to='thumbnail/', default='thumbnail/default.png', verbose_name='Thumbnail')
     description = models.TextField(

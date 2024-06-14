@@ -12,38 +12,90 @@
       <div class="heading_container heading_center">
         <h2>Danh sách sản phẩm</h2>
       </div>
-      {% if product_list %}
-        <div class="row">
-          {% for product in product_list %}
-            <div class="col-sm-6 col-md-4 col-lg-3">
-              <div class="box">
-                <a href="{% url 'product_detail' product.id %}">
-                  <div class="img-box main-product">
-                    <img src="{{ product.thumbnail.url }}" alt="" />
-                  </div>
-                  <div class="detail-box">
-                    <h6>{{ product.name }}</h6>
-                  </div>
-                  <div class="small-divider"></div>
-                  <div class="price">
-                    <h6><span>{{ product.price|floatformat:0|intcomma }}</span></h6>
-                  </div>
-                </a>
-              </div>
+      {% for category, products in category_product_dict.items %}
+      {% if products %}
+      <hr>
+      <section id="shop_section_{{ category.id }}" class="shop_section layout_padding3">
+        <div class="container">
+          <div class="heading_container heading_center">
+            <div class="section_heading_container">
+              <div style="position: relative; padding-top: 2.5rem; margin-right: 2rem;" class="swiper-button-prev swiper-button-prev-{{ category.id }}"></div>
+              <h3 style="border-bottom: 1px solid darkslategray; padding: 5px;">{{ category.name }}</h3>
+              <div style="position: relative; padding-top: 2.5rem; margin-left: 2rem;" class="swiper-button-next swiper-button-next-{{ category.id }}"></div>
             </div>
-          {% endfor %}
+          </div>
+          
+          <div style="overflow: hidden;" class="swiper-container swiper-container-{{ category.id }}">
+            <div class="swiper-wrapper" style="height: auto;">
+              {% for product in products %}
+                <div class="swiper-slide">
+                  <div class="box">
+                    <a href="{% url 'product_detail' product.id %}">
+                      <div class="img-box main-product">
+                        <img src="{{ product.thumbnail.url }}" alt="" />
+                      </div>
+                      <div class="detail-box">
+                        <h6>{{ product.name }}</h6>
+                      </div>
+                      <div class="small-divider"></div>
+                      <div class="price">
+                        <h6><span>{{ product.price|floatformat:0|intcomma }}</span></h6>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              {% endfor %}
+              <!-- Add Navigation -->
+            </div>
+          </div>
+          {% endif %}
         </div>
-      {% else %}
-        <p>Hiện tại chưa có hàng.</p>
-      {% endif %}
-      {% comment %}
-      <div class="btn-box">
-        <a href="">View All Products</a>
-      </div>
-      {% endcomment %}
-    </div>
+      </section>
+    {% endfor %}
   </section>
 
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      {% for category, products in category_product_dict.items %}
+      {% if products %}
+      var swiper = new Swiper('.swiper-container-{{ category.id }}', {
+        slidesPerView: 4,
+        spaceBetween: 30,
+        navigation: {
+          nextEl: '.swiper-button-next-{{ category.id }}',
+          prevEl: '.swiper-button-prev-{{ category.id }}',
+        },
+        autoplay: {
+          delay: 2000,
+        },
+        breakpoints: {
+          300: {
+            slidesPerView: 1,
+            spaceBetween: 10
+          },
+          500: {
+            slidesPerView: 2,
+            spaceBetween: 20
+          },
+          700: {
+            slidesPerView: 3,
+            spaceBetween: 30
+          },
+          1000: {
+            slidesPerView: 4,
+            spaceBetween: 30
+          },
+          1500: {
+            slidesPerView: 5,
+            spaceBetween: 30
+          }
+        }
+      });
+      {% endif %}
+      {% endfor %}
+    }); 
+  </script>
   <!-- end shop section -->
   <!-- info section -->
 

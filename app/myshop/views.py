@@ -27,12 +27,17 @@ class LogoutPage(LogoutView):
 
 
 class HomePage(ListView):
-    queryset = Product.objects.filter(active=True)
+    model = Category
     template_name = "myshop/index.html"
+    context_object_name = 'categories'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["thumnails"] = Thumbnail.objects.all()
+
+        categories = Category.objects.prefetch_related('products').all()
+        category_product_dict = {category: category.products.all() for category in categories}
+        context['category_product_dict'] = category_product_dict
         return context
 
 

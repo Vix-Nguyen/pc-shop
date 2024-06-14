@@ -5,6 +5,9 @@ body {
   font-family: "poppins", sans-serif;
   color: #101010;
   background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 .layout_padding {
@@ -33,6 +36,11 @@ body {
   padding-bottom: 90px;
 }
 
+.layout_padding3 {
+  padding-top: 20;
+  padding-bottom: 20;
+}
+
 .header_section {
   padding-top: 50px;
 }
@@ -45,6 +53,14 @@ body {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+}
+
+.section_heading_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width:100%;
+  padding: 0 14px;
 }
 
 .heading_container h2 {
