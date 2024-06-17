@@ -131,18 +131,18 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
 
 class ProductByCategoryListView(ListView):
     model = Product
+    template_name = "myshop/product_list.html"
 
     def get_queryset(self):
         slug = self.kwargs['slug']
         category = get_object_or_404(Category, slug=slug)
-        filter_cond = Q(category=category)
-        for subcateg in category.subcategories.all():
-            filter_cond |= Q(category=subcateg)
-
-        return Product.objects.filter(filter_cond)
+        
+        return Product.objects.filter(category=category)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         slug = self.kwargs['slug']
         context['category'] = get_object_or_404(Category, slug=slug)
+        category_product_dict = {context['category']: context['category'].products.all()}
+        context['category_product_dict'] = category_product_dict
         return context

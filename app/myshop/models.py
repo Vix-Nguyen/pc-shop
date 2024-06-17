@@ -19,12 +19,11 @@ class Category(models.Model):
 
     @classmethod
     def get_category_by_level(cls):
-        categs = cls.objects.filter(parent_category=None).order_by("order").all()
+        categs = cls.objects.order_by("order").all()
         res = [
             {
                 "name": categ.name,
                 "slug": categ.slug,
-                "subcategs":categ.subcategories.order_by("order").all()
             }
             for categ in categs
         ]
