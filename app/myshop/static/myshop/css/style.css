@@ -12,7 +12,6 @@ body {
 
 .layout_padding {
   padding-top: 60px;
-  padding-bottom: 90px;
 }
 
 .layout_padding2 {
@@ -287,7 +286,7 @@ a:focus {
 }
 
 .slider_section .detail-box {
-  padding-left: 45px;
+  text-align: center;
   margin: 45px 0;
 }
 
@@ -295,6 +294,7 @@ a:focus {
   font-weight: bold;
   font-size: 3.5rem;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .slider_section .detail-box a {
@@ -359,11 +359,9 @@ a:focus {
 }
 
 .shop_section .box {
-  background-color: #eeeeee;
+  box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.2);
   position: relative;
-  padding: 10px;
   margin-top: 25px;
-  border-radius: 25px;
 }
 
 .shop_section .box a {
@@ -392,7 +390,6 @@ a:focus {
 .shop_section .box .img-box img {
   max-width: 100%;
   max-height: 185px;
-  border-radius: 25px;
 }
 
 .shop_section .box .detail-box {
@@ -409,6 +406,8 @@ a:focus {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  margin-left: 1rem;
+  margin-right: .5rem;
 }
 
 .shop_section .box .price {
@@ -417,9 +416,22 @@ a:focus {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  /* border-radius: 100%; */
+  white-space: nowrap;
   font-size: 20px;
   color: #111;
+  margin-left: 1rem;
+}
+
+.shop_section .box button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
 }
 
 .shop_section .btn-box {
@@ -448,21 +460,12 @@ a:focus {
   color: #f16179;
 }
 
-.small-divider {
-  height: 3px;
-  display: block;
-  background-color: rgba(0, 0, 0, .1);
-  margin: 0 0 1em;
-  width: 100%;
-  max-width: 30px;
-}
-
 /* info section */
 .info_section {
   position: relative;
   background-color: #2d2d2d;
   color: #ffffff;
-  margin: 0 45px 45px;
+  margin: 30px 45px 45px;
 }
 
 .info_section .social_container {
