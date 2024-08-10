@@ -357,6 +357,15 @@ a:focus {
 .shop_section .heading_container {
   margin-bottom: 20px;
 }
+.shop_section .section_heading {
+  border-bottom: 1px solid darkslategray;
+  padding: 5px;
+  color: black;
+}
+
+.shop_section .section_heading:hover {
+  color: darkcyan;
+}
 
 .shop_section .box {
   box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.2);

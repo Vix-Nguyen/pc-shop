@@ -131,7 +131,7 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
 
 class ProductByCategoryListView(ListView):
     model = Product
-    template_name = "myshop/product_list.html"
+    template_name = "myshop/product_category.html"
 
     def get_queryset(self):
         slug = self.kwargs['slug']
