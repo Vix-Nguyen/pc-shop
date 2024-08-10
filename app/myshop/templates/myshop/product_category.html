@@ -25,6 +25,10 @@
           <i class="fa fa-search" style="font-size: 1.5rem;"></i>
         </div>
       </form>
+      {% if no_product %}
+        <hr>
+        <h2 style="font-family: 'Montserrat', sans-serif;">Hiện chưa có sản phẩm</h2>
+      {% else %}
       {% for category, products in category_product_dict.items %}
       {% if products %}
       <hr>
@@ -63,6 +67,7 @@
         </div>
       </section>
     {% endfor %}
+    {% endif %}
   </section>
   <!-- end shop section -->
   <!-- info section -->

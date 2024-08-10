@@ -146,6 +146,8 @@ class ProductByCategoryListView(ListView):
         context['category'] = get_object_or_404(Category, slug=slug)
         category_product_dict = {context['category']: products}
         context['category_product_dict'] = category_product_dict
+        if not products:
+            context["no_product"] = True
         return context
 
 class SearchResultsView(ListView):
@@ -163,6 +165,9 @@ class SearchResultsView(ListView):
         category_product_dict = {category: products.filter(
             category=category) for category in categories if category.products.exists()}
         context['category_product_dict'] = category_product_dict
+
+        if not category_product_dict:
+            context["no_product"] = True
 
         query = self.request.GET.get('q')
         context['q'] = query
