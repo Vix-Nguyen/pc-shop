@@ -1,3 +1,4 @@
+{% load static %}
 <head>
   <!-- Basic -->
   <meta charset="utf-8" />
@@ -8,7 +9,7 @@
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="{% static 'myshop/images/logo.png' %}" type="image/png" />
 
   {% block title %}
   {% endblock %}
@@ -38,12 +39,29 @@
       </a>
       <div class="collapse navbar-collapse flex-grow-1 justify-content-center" id="navbarSupportedContent">
         <ul class="navbar-nav">
+          {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Chỉnh sửa (admin)
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a href="{% url 'product_create' %}" class="dropdown-item">Thêm sp mới</a>
+                {% if not inactive %}
+                  <a href="{% url 'products_inactive' %}" class="dropdown-item">Sp bị ẩn</a>
+                {% endif %}
+                <a href="{% url 'logout' %}" class="dropdown-item">
+                  <i class="fa fa-sign-out" aria-hidden="true"></i>
+                  <span>Đăng xuất</span>
+                </a>
+              </div>
+            </li>
+          {% endif %}
           <li class="nav-item">
             <a class="nav-link" href="/">Trang chủ</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" target="_blank">
-              Danh mục sản phẩm <span style="font-size: x-small; vertical-align: middle;">▼</span>
+              Danh mục <span style="font-size: x-small; vertical-align: middle;">▼</span>
             </a>
             <ul class="dropdown-menu">
               {% for categ in categories %}
@@ -61,23 +79,6 @@
           <li class="nav-item">
             <a class="nav-link" href="#info_section">Liên hệ</a>
           </li>
-          {% if user.is_authenticated %}
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Action
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a href="{% url 'product_create' %}" class="dropdown-item">Thêm sp mới</a>
-                {% if not inactive %}
-                  <a href="{% url 'products_inactive' %}" class="dropdown-item">Sp bị ẩn</a>
-                {% endif %}
-                <a href="{% url 'logout' %}" class="dropdown-item">
-                  <i class="fa fa-sign-out" aria-hidden="true"></i>
-                  <span>Đăng xuất</span>
-                </a>
-              </div>
-            </li>
-          {% endif %}
           {% comment %}TODO: Implement search{% endcomment %}
           {% comment %}
           <form class="form-inline">

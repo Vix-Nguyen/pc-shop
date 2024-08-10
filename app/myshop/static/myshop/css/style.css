@@ -94,6 +94,11 @@ body {
   background-color: #f4f5f6;
 } */
 
+#navbarSupportedContent .navbar-nav {
+  position: absolute;
+  right: 0;
+}
+
 #navbarSupportedContent .navbar-nav .nav-link {
   padding: 5px 25px;
   color:#cbc9c9;
