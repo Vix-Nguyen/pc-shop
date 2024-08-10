@@ -11,6 +11,13 @@
     <div class="container">
       <div class="heading_container heading_center">
         <h2>Danh sách sản phẩm</h2>
+        <form action="{% url 'search' %}" method="get">
+          <div style="display: flex;">
+            <div style="display: inline-block; align-self: flex-end;">TÌM SẢN PHẨM:</div>
+            <input style="width: 20rem; margin:auto 0.5rem;" name="q" type="text" placeholder="Asus, Mac...">
+            <i class="fa fa-search" style="font-size: 1.5rem;"></i>
+          </div>
+        </form>
       </div>
       {% for category, products in category_product_dict.items %}
       {% if products %}

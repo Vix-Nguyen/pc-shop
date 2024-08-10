@@ -141,8 +141,29 @@ class ProductByCategoryListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        products = self.get_queryset()
         slug = self.kwargs['slug']
         context['category'] = get_object_or_404(Category, slug=slug)
-        category_product_dict = {context['category']: context['category'].products.all()}
+        category_product_dict = {context['category']: products}
         context['category_product_dict'] = category_product_dict
+        return context
+
+class SearchResultsView(ListView):
+    model = Product
+    template_name = 'myshop/product_category.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        return Product.objects.filter(name__icontains=query)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        products = self.get_queryset()
+        categories = Category.objects.prefetch_related('products').all()
+        category_product_dict = {category: products.filter(
+            category=category) for category in categories if category.products.exists()}
+        context['category_product_dict'] = category_product_dict
+
+        query = self.request.GET.get('q')
+        context['q'] = query
         return context
