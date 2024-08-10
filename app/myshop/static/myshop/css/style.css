@@ -146,7 +146,7 @@ a:focus {
 .navbar-brand span {
   font-size: 28px;
   font-weight: bold;
-  color: cadetblue;
+  color: chocolate;
   text-transform: uppercase;
   margin: 0;
   padding: 0;
@@ -265,7 +265,7 @@ a:focus {
 .slider_section .slider_container {
   color: #fefefe;
   /* background-color: #000000; */
-  background: linear-gradient(to left, #d7d2cc 0%, #304352 100%);
+  background: radial-gradient(1091px at 106.5% 111.5%, rgb(250, 246, 213) 0.1%, rgb(218, 147, 93) 42.2%, rgb(137, 86, 67) 74.3%, rgb(67, 39, 39) 100.2%);
   padding: 25px;
 }
 
@@ -306,9 +306,9 @@ a:focus {
 .slider_section .detail-box a {
   display: inline-block;
   padding: 10px 40px;
-  background-color: cadetblue;
+  background-color: darksalmon;
   color: #ffffff;
-  border: 4px solid cadetblue;
+  border: 4px solid darksalmon;
   border-radius: 5px;
   -webkit-transition: all .3s;
   transition: all .3s;
@@ -364,32 +364,32 @@ a:focus {
   margin-bottom: 20px;
 }
 .shop_section .section_heading {
-  border-bottom: 1px solid darkslategray;
+  border-bottom: 1px solid black;
   padding: 5px;
   color: black;
 }
 
 .shop_section .swiper-button-next {
-  color: darkcyan;
+  color: chocolate;
 }
 
 .shop_section .swiper-button-prev {
-  color: darkcyan;
+  color: chocolate;
 }
 
 .shop_section .swiper-button-next:hover {
   /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
-  color: aquamarine;
+  color: lightsalmon;
   transition: 0.3s;
 }
 
 .shop_section .swiper-button-prev:hover {
-  color: aquamarine;
+  color: lightsalmon;
   transition: 0.3s;
 }
 
 .shop_section .section_heading:hover {
-  color: darkcyan;
+  color: chocolate;
 }
 
 .shop_section .box {
