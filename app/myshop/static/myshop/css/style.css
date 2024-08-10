@@ -135,6 +135,7 @@ a:focus {
 .navbar-brand {
   position: fixed;
   padding: 20px;
+  margin-left: 3rem;
 }
 
 .navbar-brand span {
