@@ -20,7 +20,11 @@
           <div class="heading_container heading_center">
             <div class="section_heading_container">
               <div style="position: relative; padding-top: 2.5rem; margin-right: 2rem;" class="swiper-button-prev swiper-button-prev-{{ category.id }}"></div>
-              <h3 style="border-bottom: 1px solid darkslategray; padding: 5px;">{{ category.name }}</h3>
+              <a href="{% url 'category' category.slug %}">
+                <h3 class="section_heading">
+                  {{ category.name }}
+                </h3>
+              </a>
               <div style="position: relative; padding-top: 2.5rem; margin-left: 2rem;" class="swiper-button-next swiper-button-next-{{ category.id }}"></div>
             </div>
           </div>

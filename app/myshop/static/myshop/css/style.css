@@ -363,6 +363,25 @@ a:focus {
   color: black;
 }
 
+.shop_section .swiper-button-next {
+  color: darkcyan;
+}
+
+.shop_section .swiper-button-prev {
+  color: darkcyan;
+}
+
+.shop_section .swiper-button-next:hover {
+  /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
+  color: aquamarine;
+  transition: 0.3s;
+}
+
+.shop_section .swiper-button-prev:hover {
+  color: aquamarine;
+  transition: 0.3s;
+}
+
 .shop_section .section_heading:hover {
   color: darkcyan;
 }
